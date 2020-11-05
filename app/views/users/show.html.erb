@@ -4,13 +4,20 @@
 <h3>Created Events:</h3>
 <ul>
     <% @user.created_events.each do |event| %>
-        <li><%= event.name %> on <%= event.date %></li>
+        <li><%= link_to event.name, event %> on <%= event.date %></li>
     <% end %>
 </ul>
 
 <h3>Attending Events:</h3>
+<h4>Previous Events:</h4>
 <ul>
-    <% @user.attended_events.each do |event| %>
-        <li><%= event.name %></li>
+    <% @user.attended_events.where("date < ?", Time.now.strftime("%Y-%m-%d")).each do |event| %>
+        <li><%= link_to event.name, event %> on <%= event.date %></li>
+    <% end %>
+</ul>
+<h4>Upcoming Events:</h4>
+<ul>
+    <% @user.attended_events.where("date > ?", Time.now.strftime("%Y-%m-%d")).each do |event| %>
+        <li><%= link_to event.name, event %> on <%= event.date %></li>
     <% end %>
 </ul>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_05_171210) do
+ActiveRecord::Schema.define(version: 2020_11_05_174146) do
 
   create_table "attendings", force: :cascade do |t|
     t.integer "guest_id"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2020_11_05_171210) do
 
   create_table "events", force: :cascade do |t|
     t.string "name"
-    t.string "date"
+    t.date "date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "creator_id"

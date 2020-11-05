@@ -13,6 +13,8 @@
     <header>
       <nav>
         <ul>
+        <li><%= link_to "All Events", events_path %></li>
+        <li><%= link_to "My Profile", user_path(current_user.id) %></li>
           <% if user_signed_in? %>
             <li>Logged in as <strong><%= current_user.name %></strong></li>
             <li><%= link_to "Logout", logout_path %></li>
