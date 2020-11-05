@@ -1,2 +1,9 @@
 <h1>User Details</h1>
 <h3>Name: <%= @user.name %></h3>
+
+<h3>Events:</h3>
+<ul>
+    <% @user.created_events.each do |event| %>
+        <li><%= event.name %> on <%= event.date %></li>
+    <% end %>
+</ul>

@@ -1,0 +1,10 @@
+<h1>All Events</h1>
+<ul>
+    <% @events.each do |event| %>
+        <li><%= event.name %></li>
+    <% end %>
+</ul>
+
+<% if user_signed_in? %>
+    <%= link_to "New Event", new_event_path %>
+<% end %>
