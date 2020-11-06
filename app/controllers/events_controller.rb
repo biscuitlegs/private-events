@@ -26,6 +26,18 @@ class EventsController < ApplicationController
     end
   end
 
+  def update
+    @event = Event.find(params[:id])
+
+    #For adding a User to guests association
+    if params[:event][:invited_user]
+      @invited_user = User.find(params[:event][:invited_user])
+      @event.guests << @invited_user
+    end
+
+    redirect_to @event
+  end
+
 
   private
 

@@ -7,3 +7,16 @@
         <li><%= guest.name %></li>
     <% end %>
 </ul>
+
+<% if user_signed_in? %>
+    <% uninvited_users = User.where.not(name: @event.guests.map { |guest| guest.name } << current_user.name).map { |user| [user.name, user.id] } %>
+<% end %>
+
+<% if user_signed_in? && @event.creator.id == current_user.id && uninvited_users.any? %>
+    <h4>Invite a User:</h4>
+
+    <%= form_with model: @event, local: true do |f| %>
+        <%= f.select(:invited_user, uninvited_users) %>
+        <%= f.submit %>
+    <% end %>
+<% end %>
